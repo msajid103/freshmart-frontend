@@ -41,29 +41,41 @@ const Footer = () => {
               <li className="mb-2">📞 +1 234 567 890</li>
               <li className="mb-2">✉️ support@freshmart.com</li>
             </ul>
-            {/* Social Media Icons */}
+            {/* Social Media Icons - With real URLs (replace with your actual social media links) */}
             <div className="mt-4 flex space-x-4">
               <a
-                href="#"
+                href="https://facebook.com/freshmart"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 flex justify-center items-center bg-red-600 rounded-full hover:bg-red-700 transition"
+                aria-label="Visit our Facebook page"
               >
                 <FaFacebookF className="text-white" />
               </a>
               <a
-                href="#"
+                href="https://twitter.com/freshmart"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 flex justify-center items-center bg-red-600 rounded-full hover:bg-red-700 transition"
+                aria-label="Visit our Twitter page"
               >
                 <FaTwitter className="text-white" />
               </a>
               <a
-                href="#"
+                href="https://instagram.com/freshmart"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 flex justify-center items-center bg-red-600 rounded-full hover:bg-red-700 transition"
+                aria-label="Visit our Instagram page"
               >
                 <FaInstagram className="text-white" />
               </a>
               <a
-                href="#"
+                href="https://linkedin.com/company/freshmart"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 flex justify-center items-center bg-red-600 rounded-full hover:bg-red-700 transition"
+                aria-label="Visit our LinkedIn page"
               >
                 <FaLinkedinIn className="text-white" />
               </a>

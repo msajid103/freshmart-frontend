@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { getUserInfo } from "../../localStorage"
 import { FaTrashAlt, FaPencilAlt } from "react-icons/fa";
 import API from "../../utils/api";
@@ -18,17 +17,18 @@ const ProductManagement = () => {
   });
   const [isOpenForm, setisOpenForm] = useState(false);
 
-  const fetchProducts = async () => {
-    if (!user || !user.id) return;
-    try {
-      const response = await API.get(`/products/${user.id}`);
-      setProducts(response.data);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
+
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      if (!user || !user.id) return;
+      try {
+        const response = await API.get(`/products/${user.id}`);
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
     fetchProducts();
   }, [user]);
 
@@ -51,10 +51,10 @@ const ProductManagement = () => {
     try {
       if (formData.productId) {
         // Update product
-       await API.put(`/products/${formData.productId}`, productData);
+        await API.put(`/products/${formData.productId}`, productData);
       } else {
         // Add product
-      await API.post("/products", productData);
+        await API.post("/products", productData);
       }
       fetchProducts();
       setFormData({
@@ -84,15 +84,15 @@ const ProductManagement = () => {
     });
     setisOpenForm(true);
   };
-const addProduct = ()=>{
-  setisOpenForm(true);
-}
-const closeForm = ()=>{
-  setisOpenForm(false);
-}
+  const addProduct = () => {
+    setisOpenForm(true);
+  }
+  const closeForm = () => {
+    setisOpenForm(false);
+  }
   const deleteProduct = async (id) => {
     try {
-       await API.delete(`/products/${id}`);
+      await API.delete(`/products/${id}`);
       fetchProducts();
     } catch (error) {
       console.error("Error deleting product:", error);
@@ -108,18 +108,18 @@ const closeForm = ()=>{
         >
           Add Product
         </button>
-      ):
-      (
-        <button
-          className="bg-red-500 text-white px-4 py-2"
-          onClick={closeForm}
-        >
-          Close Form
-        </button>
-      )}
+      ) :
+        (
+          <button
+            className="bg-red-500 text-white px-4 py-2"
+            onClick={closeForm}
+          >
+            Close Form
+          </button>
+        )}
 
       <div className="mb-4">
-        {isOpenForm && ( 
+        {isOpenForm && (
           <div>
             <input
               type="text"
