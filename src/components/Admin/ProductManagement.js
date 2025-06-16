@@ -17,20 +17,20 @@ const ProductManagement = () => {
   });
   const [isOpenForm, setisOpenForm] = useState(false);
 
-
+  // Move fetchProducts outside of useEffect so it can be used throughout the component
+  const fetchProducts = async () => {
+    if (!user || !user.id) return;
+    try {
+      const response = await API.get(`/products/${user.id}`);
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      if (!user || !user.id) return;
-      try {
-        const response = await API.get(`/products/${user.id}`);
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
     fetchProducts();
-  }, [user]);
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,7 +56,7 @@ const ProductManagement = () => {
         // Add product
         await API.post("/products", productData);
       }
-      fetchProducts();
+      fetchProducts(); // Now this will work
       setFormData({
         name: "",
         description: "",
@@ -93,7 +93,7 @@ const ProductManagement = () => {
   const deleteProduct = async (id) => {
     try {
       await API.delete(`/products/${id}`);
-      fetchProducts();
+      fetchProducts(); // Now this will work too
     } catch (error) {
       console.error("Error deleting product:", error);
     }
